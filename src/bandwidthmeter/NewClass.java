@@ -63,8 +63,8 @@ public final class NewClass {
     static double totalRecive;
     static Properties prop=new Properties();
     FileWriter outSave ;
-    static long send;
-    static long recive;
+    static AtomicLong send=new AtomicLong();
+    static AtomicLong recive=new AtomicLong();
     private Ip4 ip = new Ip4();
     byte[] sIP = new byte[4];
     byte[] dIP = new byte[4];
