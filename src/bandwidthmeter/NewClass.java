@@ -41,6 +41,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -64,7 +65,7 @@ public final class NewClass {
     static Properties prop=new Properties();
     FileWriter outSave ;
     static AtomicLong send=new AtomicLong();
-    static AtomicLong recive=new AtomicLong();
+    static AtomicLong recive=new AtomicLong();;
     private Ip4 ip = new Ip4();
     byte[] sIP = new byte[4];
     byte[] dIP = new byte[4];
@@ -101,7 +102,7 @@ public final class NewClass {
        }     
        return instance;
    }
-    void total() throws FileNotFoundException, IOException{    
+   void total() throws FileNotFoundException, IOException{    
         FileInputStream in=new FileInputStream("src/bandwidthmeter/total.properties");
         prop.load(in);
         in.close();
@@ -235,8 +236,7 @@ public final class NewClass {
             String toolTip="BandWidthMeter";
             icon.setToolTip(toolTip);
             tray.add(icon);     
-  }
-    
+  }    
     private void updateHistory() throws FileNotFoundException, IOException{
         FileInputStream in=new FileInputStream("src/bandwidthmeter/total.properties");
         prop.load(in);
@@ -299,13 +299,13 @@ public final class NewClass {
          double sessionRecive=0;
          double session_Send=0;
          double session_Recive=0;
-         if(send!=0){
-         session_Send=(double)send/1024;
-         sessionSend=(double)send/1048576;
+         if(!send.equals(0)){
+         session_Send=send.doubleValue()/1024;
+         sessionSend=send.doubleValue()/1048576;
          }
-         if(recive!=0){
-          session_Recive=(double)recive/1024;
-           sessionRecive=(double)recive/1048576;
+         if(!recive.equals(0)){
+          session_Recive=recive.doubleValue()/1024;
+           sessionRecive=recive.doubleValue()/1048576;
          }
          String row=format1+"-"+String.valueOf(session_Send)+"-"+String.valueOf(session_Recive);
         try (FileWriter fw = new FileWriter(new File("src/bandwidthmeter/history.txt"),true)) {
@@ -336,7 +336,6 @@ public final class NewClass {
                     BufferedWriter writer=Files.newBufferedWriter( path, StandardOpenOption.TRUNCATE_EXISTING);
                     writer.write(row);
                     writer.close();
-                    System.out.println("save");
                 } catch (Exception ex) {
                     Logger.getLogger(NewClass.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -417,14 +416,14 @@ public final class NewClass {
                                 
 				if(sourceIps.contains(sourceIP)){
                                     if(!lanIps.contains(destinationIP)){
-                                    send+=size;  
+                                    send.addAndGet(size);  
                                     if(jLabel7!=null){
                                     jLabel7.setText(String.valueOf(NewClass.send));
                                     }
                                     }
                                 }else{
                                     if(!lanIps.contains(sourceIP)){
-                                    recive+=size; 
+                                    recive.addAndGet(size); 
                                     if(jLabel8!=null){
                                     jLabel8.setText(String.valueOf(NewClass.recive));
                                     }
