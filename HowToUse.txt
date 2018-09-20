@@ -1,13 +1,13 @@
 prerequisite:
-install jre7
+install jre8
 
 how to use:
 for windows first download winpcap from
 **www.winpcap.org** and install it.then click on
-bandwidthmeter.jar to run the application.
+bwm.jar to run the application.
 
 for linux first download libpcap from
 **https://sourceforge.net/projects/libpcap**
 and install it.then click on
-bandwidthmeter.jar to run the application.
+bwm.jar to run the application.
 
