@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.29797979797979796" maxHeight="401.0" maxWidth="600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bwm.HistoryController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <Label alignment="CENTER" layoutX="16.0" layoutY="29.0" prefHeight="17.0" prefWidth="144.0" text="BandWidthMeter">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalSendLabel" alignment="CENTER" layoutX="16.0" layoutY="82.0" prefHeight="17.0" prefWidth="144.0" text="Total Send">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalReciveLabel" alignment="CENTER" layoutX="16.0" layoutY="288.0" prefHeight="17.0" prefWidth="144.0" text="Total Recive">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalSendInt" alignment="CENTER" layoutX="1.0" layoutY="124.0" prefHeight="27.0" prefWidth="175.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalReciveInt" alignment="CENTER" layoutX="1.0" layoutY="334.0" prefHeight="27.0" prefWidth="175.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <TableView fx:id="hTable" layoutY="1.0" prefHeight="362.0" prefWidth="417.0">
+              <columns>
+                <TableColumn fx:id="date" prefWidth="130.0" text="Date" />
+                <TableColumn fx:id="send" minWidth="0.0" prefWidth="151.0" text="Send(KB)" />
+                  <TableColumn fx:id="recive" minWidth="0.0" prefWidth="135.0" text="Recive(KB)" />
+              </columns>
+            </TableView>
+            <Button fx:id="moreHistory" layoutX="1.0" layoutY="363.0" mnemonicParsing="false" onAction="#moreHistory" prefHeight="34.0" prefWidth="141.0" text="more  History" AnchorPane.bottomAnchor="0.0" />
+            <Button fx:id="allHistory" layoutX="143.0" layoutY="363.0" mnemonicParsing="false" onAction="#allHistory" prefHeight="34.0" prefWidth="144.0" text="All History" AnchorPane.bottomAnchor="0.0" />
+            <Button fx:id="delHistory" layoutX="288.0" layoutY="363.0" mnemonicParsing="false" onAction="#delHistory" prefHeight="34.0" prefWidth="129.0" text="Delete History" AnchorPane.bottomAnchor="0.0" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>
